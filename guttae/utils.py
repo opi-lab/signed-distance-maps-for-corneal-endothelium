@@ -8,6 +8,8 @@ import json
 import matplotlib.pyplot as plt
 import datetime
 
+from tensorflow import keras
+
 _checkpoint_struct = "{0}_{1}_model_{2}"
 _datestring_struct = "%d-%m-%YT%H%M%S"
 _datestring_struct_old = "%d-%m-%YT%H;%M;%S"
@@ -100,6 +102,40 @@ def save_history_as_csv(path: str, history: dict, delimiter="\t"):
         # Write rows
         for idx in range(int(num_rows)):
             writer.writerow([v[idx] for v in history.values()])
+
+
+def load_model(folder):
+    """Loads a model from path.
+
+    The path needs to contain at least a folder named `generator_checkpoint`.
+    It may optionaly also include floders `lipids`, `nuclei` or `cytoplasm`,
+    each of which contain a folder `generator_checkpoint`. If this is the case,
+    these models will serve as stage 2 models.
+
+    Parameters
+    ----------
+    folder : str
+        Path to model
+
+    """
+    import warnings
+
+    warnings.filterwarnings("ignore")
+
+    folder = os.path.normpath(folder)
+
+    assert os.path.exists(folder), "Folder {0} does not exist".format(folder)
+
+    model_path = os.path.join(folder, _model_name)
+    assert os.path.exists(
+        model_path
+    ), "Folder {0} does not contain a model".format(folder)
+
+    model = keras.models.load_model(model_path, compile=False)
+
+    warnings.filterwarnings("default")
+
+    return model
 
 
 def save_config(path, headers):
