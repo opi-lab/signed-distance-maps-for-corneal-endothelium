@@ -6,6 +6,8 @@ import random
 import glob
 import os
 
+from scipy import ndimage
+
 
 def Augmentation(
     image: dt.Feature,
@@ -41,7 +43,6 @@ def DataLoader(path_to_dataset=None, augmentation=None, **kwargs):
 
     print("Loading images from: \t", DATASET_PATH)
 
-    # random.seed(1)
     random.shuffle(training_set)
     random.shuffle(validation_set)
 
@@ -63,20 +64,27 @@ def DataLoader(path_to_dataset=None, augmentation=None, **kwargs):
         root
         + dt.LoadImage(path=lambda filename: filename, **root.properties)
         + dt.Lambda(lambda: lambda i: i * 1.0)
-    ) + dt.NormalizeMinMax(min=-1, max=1)
-
-    from scipy import ndimage
+    ) + dt.Lambda(
+        lambda: lambda image: np.tanh(
+            (image - np.mean(image)) / np.std(image) * 0.3
+        )
+    )
 
     cell = (
         root
         + dt.LoadImage(
-            path=lambda filename: filename.replace("cor", "cell"),
+            path=lambda filename: [
+                filename.replace("cor", _type) for _type in ("cell", "guttae")
+            ],
             **root.properties,
         )
         + dt.Lambda(
-            lambda: lambda image: ndimage.distance_transform_edt(image / 255)
+            lambda: lambda image: np.expand_dims(
+                ndimage.distance_transform_edt(image[..., 0] / 255)
+                - ndimage.distance_transform_edt(image[..., 1]),
+                axis=-1,
+            )
         )
-        + dt.NormalizeMinMax(min=-1, max=1)
     )
 
     dataset = dt.Combine([cor, cell])

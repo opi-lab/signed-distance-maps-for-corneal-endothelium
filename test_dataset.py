@@ -14,7 +14,7 @@ def get_mask(image: dt.Image) -> dt.Image:
     return image[1]
 
 
-PATH = r"C:/GU/GUTTA/datasets"
+PATH = r"C:/GU/GUTTAE/datasets"
 
 augmentation_list = {
     "FlipLR": {},
@@ -43,6 +43,6 @@ for image_index in range(NUMBER_OF_IMAGES):
     plt.imshow(image[:, :, 0])
     plt.colorbar()
     plt.subplot(1, 2, 2)
-    plt.imshow(mask[:, :, 1])
+    plt.imshow(mask[:, :, 0])
     plt.colorbar()
     plt.show()

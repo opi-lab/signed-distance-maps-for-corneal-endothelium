@@ -1,59 +1,38 @@
 import sys
 import itertools
-import tensorflow
+import tensorflow as tf
 import numpy as np
-import guttae
+import dplts
 
 from tensorflow import keras
-from guttae import deeptrack as dt
+from dplts import deeptrack as dt
 from tensorflow.keras import layers, backend as K
 from tensorflow.keras.initializers import RandomNormal
 from tensorflow.keras.optimizers import Adam
 
 TEST_VARIABLES = {
-    "generator_depth": [5],
-    "generator_breadth": [16],
-    "discriminator_depth": [4],
+    "depth": [6],
+    "breadth": [16],
     "batch_size": [8],
-    "min_data_size": [2048],
-    "max_data_size": [2049],
-    "augmentation_dict": [
-        {
-            "FlipLR": {},
-            "FlipUD": {},
-            "FlipDiagonal": {},
-            "Affine": {
-                "rotate": "lambda: np.random.rand() * 2 * np.pi",
-            },
-        }
-    ],
-    "mae_loss_weight": [0.8],
-    "path_to_dataset": [r"C:/GU/GUTTA/datasets"],
+    "min_data_size": [1024],
+    "max_data_size": [1025],
+    "path": ["datasets"],
 }
 
 
 def model_initializer(
-    generator_depth,
-    generator_breadth,
-    discriminator_depth,
-    mae_loss_weight=1,
+    depth,
+    breadth,
     **kwargs,
 ):
-    generator = guttae.generator(generator_breadth, generator_depth)
-    discriminator = guttae.discriminator(discriminator_depth)
+    model = dplts.models.get_model(breadth, depth)
 
-    generator.summary()
-    discriminator.summary()
-
-    return dt.models.cgan(
-        generator=generator,
-        discriminator=discriminator,
-        discriminator_loss="mse",
-        discriminator_optimizer=Adam(lr=0.0002, beta_1=0.5),
-        assemble_loss=["mse", "mae"],
-        assemble_optimizer=Adam(lr=0.0002, beta_1=0.5),
-        assemble_loss_weights=[1, mae_loss_weight],
+    model.compile(
+        loss="mae",
+        metrics=["mae"],
+        optimizer=Adam(learning_rate=0.0001),
     )
+    return model
 
 
 # Populate models
@@ -70,9 +49,7 @@ def append_generator(**arguments):
     _generators.append(
         (
             arguments,
-            lambda: guttae.DataGenerator(
-                **arguments,
-            ),
+            lambda: dplts.DataGenerator(**arguments),
         )
     )
 
