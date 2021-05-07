@@ -2,10 +2,10 @@ import sys
 import itertools
 import tensorflow as tf
 import numpy as np
-import dplts
+import guttae
 
 from tensorflow import keras
-from dplts import deeptrack as dt
+from guttae import deeptrack as dt
 from tensorflow.keras import layers, backend as K
 from tensorflow.keras.initializers import RandomNormal
 from tensorflow.keras.optimizers import Adam
@@ -14,9 +14,19 @@ TEST_VARIABLES = {
     "depth": [6],
     "breadth": [16],
     "batch_size": [8],
-    "min_data_size": [1024],
-    "max_data_size": [1025],
-    "path": ["datasets"],
+    "min_data_size": [2048],
+    "max_data_size": [2049],
+    "path_to_dataset": ["datasets"],
+    "augmentation_dict": [
+        {
+            "FlipLR": {},
+            "FlipUD": {},
+            "FlipDiagonal": {},
+            "Affine": {
+                "rotate": "lambda: np.random.rand() * 2 * np.pi",
+            },
+        }
+    ],
 }
 
 
@@ -25,7 +35,7 @@ def model_initializer(
     breadth,
     **kwargs,
 ):
-    model = dplts.models.get_model(breadth, depth)
+    model = guttae.models.get_model(breadth, depth)
 
     model.compile(
         loss="mae",
@@ -49,7 +59,7 @@ def append_generator(**arguments):
     _generators.append(
         (
             arguments,
-            lambda: dplts.DataGenerator(**arguments),
+            lambda: guttae.DataGenerator(**arguments),
         )
     )
 

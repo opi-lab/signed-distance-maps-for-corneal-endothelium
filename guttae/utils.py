@@ -194,30 +194,27 @@ def save_training_results(
 
 def plot_evaluation(pc, target, prediction, ncols=5):
     plt.figure(
-        figsize=(
-            2 * target[0].shape[-1] * ncols,
-            2.5 * (target[0].shape[-1] + 1),
-        )
+        figsize=(2 * target.shape[-1] * ncols, 2.5 * (target.shape[-1] + 1))
     )
     for col in range(ncols):
-        plt.subplot(1 + target[col].shape[-1], ncols, col + 1)
-        plt.imshow(pc[col][:, :, 0], vmin=-1, vmax=1)
+        plt.subplot(1 + target.shape[-1], ncols, col + 1)
+        plt.imshow(pc[col, :, :, 0])
         plt.axis("off")
 
-        for row in range(target[col].shape[-1]):
+        for row in range(target.shape[-1]):
             plt.subplot(
-                1 + target[col].shape[-1],
+                1 + target.shape[-1],
                 ncols * 2,
                 ncols * (row + 1) * 2 + 1 + col * 2,
             )
-            plt.imshow(prediction[col][0, :, :, row], vmin=-1, vmax=1)
+            plt.imshow(prediction[col, :, :, row])
             plt.axis("off")
             plt.subplot(
-                1 + target[col].shape[-1],
+                1 + target.shape[-1],
                 ncols * 2,
                 ncols * (row + 1) * 2 + 2 + col * 2,
             )
-            plt.imshow(target[col][:, :, row], vmin=-1, vmax=1)
+            plt.imshow(target[col, :, :, row])
             plt.axis("off")
 
         plt.subplots_adjust(hspace=0.02, wspace=0.02)

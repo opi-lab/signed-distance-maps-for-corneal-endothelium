@@ -74,6 +74,7 @@ for index in indices:
 
     # Define data generators
     print("Grabbing validation data...")
+    validation_data = guttae.get_validation_set(2)
 
     for i in range(args["repet"]):
         validation_data = guttae.get_validation_set(2)
@@ -82,10 +83,11 @@ for index in indices:
             h = model.fit(
                 generator,
                 epochs=args["epochs"],
+                callbacks=[early_stopping],
+                validation_data=validation_data,
+                validation_batch_size=2,
             )
-        predictions = model.model.predict(
-            np.array(validation_data[:2]), batch_size=2
-        )
+        predictions = model.model.predict(validation_data[0][:2], batch_size=2)
 
         guttae.save_training_results(
             index=index,
@@ -93,6 +95,7 @@ for index in indices:
             history=h.history,
             model=model.model,
             headers=headers,
-            inputs=np.array(validation_data[:2]),
+            inputs=validation_data[0],
             predictions=predictions,
+            targets=validation_data[1],
         )

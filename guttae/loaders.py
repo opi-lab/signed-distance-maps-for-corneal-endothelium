@@ -150,4 +150,4 @@ def get_validation_set(size=_VALIDATION_SET_SIZE):
         data.append(batch_function(output))
         labels.append(label_function(output))
 
-    return data, labels
+    return np.array(data), np.array(labels)
