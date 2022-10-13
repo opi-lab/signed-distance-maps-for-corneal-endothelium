@@ -1,0 +1,19 @@
+{
+  "depth": 6,
+  "breadth": 16,
+  "batch_size": 8,
+  "min_data_size": 2048,
+  "max_data_size": 2049,
+  "path_to_dataset": "datasets",
+  "augmentation_dict": {
+    "FlipLR": {},
+    "FlipUD": {},
+    "FlipDiagonal": {},
+    "Affine": {
+      "rotate": "lambda: np.random.rand() * 2 * np.pi"
+    }
+  },
+  "epochs": 120,
+  "patience": 100,
+  "repet": 1
+}
