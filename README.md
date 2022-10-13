@@ -13,10 +13,7 @@ Specular microscopy assessment of the human corneal endothelium (CE) in Fuchs' d
 
 This repository is a simplified version of the project, it doesn't contain the postprocessing operations.
 
-* Clone this repository: `git clone https://github.com/opi-lab/signed-distance-maps-for-corneal-endothelium.git`
-* Switch to the Unet branch: `git checkout Unet`
-* Download the model [here](https://drive.google.com/drive/folders/).
-* Move the `model/` folder to the `datasets/` folder: `mv path/to/model/ datasets/`.
+To clone this repository: `git clone https://github.com/opi-lab/signed-distance-maps-for-corneal-endothelium.git`
 
 The folder structure should be:
 
