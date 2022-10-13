@@ -16,7 +16,7 @@ This repository is a simplified version of the project, it doesn't contain the p
 * Clone this repository: `git clone https://github.com/opi-lab/signed-distance-maps-for-corneal-endothelium.git`
 * Switch to the Unet branch: `git checkout Unet`
 * Download the model [here](https://drive.google.com/drive/folders/).
-* Move the `model/` folder to the datasets folder: `mv path/to/model/ datasets/`.
+* Move the `model/` folder to the `datasets/` folder: `mv path/to/model/ datasets/`.
 
 The folder structure should be:
 
@@ -83,7 +83,7 @@ In this work, we propose a deep learning-based method to carry out reliably the 
 
 ## Brief description of the method
 
-UNet-dm infers a signed distance map from a given CE image, where positive values indicate cell bodies and negative values guttae. The architecture is shown in Fig. INSERT FIGURE. 
+UNet-dm infers a signed distance map from a given CE image, where positive values indicate cell bodies and negative values guttae. The architecture is shown in Fig. 2. 
 
 <p align="center">
     <img src="imgs/architecture.png" width="600px"/>
