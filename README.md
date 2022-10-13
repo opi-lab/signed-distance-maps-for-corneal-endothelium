@@ -72,9 +72,12 @@ The human corneal endothelium (CE) is responsible for maintaining corneal transp
 
 Specular microscopy is based on illuminating the cornea with a narrow beam of light (Fig. 1(a)) and capturing the specular reflection from the posterior corneal surface. Most of the incident light is either transmitted into the eye's anterior chamber (Fig. 1(b)) or reflected by the epithelial surface at the anterior surface of the cornea. None of these fractions of the incident light are useful for acquiring the endothelial image but the tiny fraction (about 0.22%) reflected by the posterior corneal surface (Fig. 1(c)). The CE image is a trade-off between the width of the beam and the corneal thickness. Once acquired, the normal endothelial cells appear gray, forming a regular tessellation (Fig. 1(d)). The irregularities in the surface (Fig. 1(e)) produce reflected rays in directions other than the corresponding specular reflection and, consequently, appear as dark regions (Fig. 1(f)).
 
-<!-- 
-INSERT FIG 1
--->
+<p align="center">
+    <img src="imgs/optical_principle_and_cornea_layers.png" width="600px"/>
+</p>
+<p align="center">
+    <strong>Fig. 1.</strong> Schematic of the CNN architecture.
+</p>
 
 In this work, we propose a deep learning-based method to carry out reliably the segmentation task in specular microscopy images in the presence of cornea guttata. We use a CNN architecture based on the UNet model for mapping the input image to a signed distance map, from which we obtain the cell and guttae segmentation, which we call <em>UNet-dm</em>. Our network demonstrates rapid convergence and robustness in terms of clinically relevant CE morphometric measures. We evaluate the main CE morphometric parameters necessary to estimate its health status and compare them with manual references. Moreover, we compare the results with the evaluation performed by the <em>CellCount</em> microscope software from Topcon (where the cell size-dependent parameters are usually overestimated). Our results show an improvement over conventional UNet-based methods and the Topcon software used routinely in the clinical setting. 
 
@@ -82,7 +85,12 @@ In this work, we propose a deep learning-based method to carry out reliably the 
 
 UNet-dm infers a signed distance map from a given CE image, where positive values indicate cell bodies and negative values guttae. The architecture is shown in Fig. INSERT FIGURE. 
 
-<!-- insert architecture -->
+<p align="center">
+    <img src="imgs/architecture.png" width="600px"/>
+</p>
+<p align="center">
+    <strong>Fig. 2.</strong> Schematic of the CNN architecture.
+</p>
 
 By using this method, we found several advantages:
 
@@ -92,16 +100,6 @@ By using this method, we found several advantages:
 4. Reduced learning complexity and rapid convergence using a relatively small dataset.
 
 
-<!--
-<p align="center">
-    <img src="imgs/model.png" width="600px"/>
-</p>
-<p align="center">
-    <b>Fig. 1 </b> CNN architecture.
-</p>
--->
-
-<!--
 ## Citation
 
 If you find this code useful, please consider citing:
@@ -109,4 +107,4 @@ If you find this code useful, please consider citing:
 ```
 bibtext
 ```
--->
+
