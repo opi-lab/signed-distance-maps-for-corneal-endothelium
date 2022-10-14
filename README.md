@@ -37,7 +37,7 @@ signed-distance-maps-for-corneal-endothelium/
 
 ### Try the trained model
 
-In the directory `./datasets/validation/` of the main folder, there is an image of cornea guttata and its curated segmentation. To run the trained model, check the `./seg_data.ipynb` notebook.
+In the directory `./datasets/validation/` of the main folder, there is an image of cornea guttata and its curated segmentation. To run the trained model, check the `./seg_data.ipynb` notebook. It is worth mentioning that the dimensions of the images have to be a multiple of 32.
 
 ### Train the model
 
