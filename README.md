@@ -2,7 +2,7 @@
 
 #### by Juan S. Sierra et al. (https://www.researchgate.net/profile/Juan-Sierra-Bravo) 
 
-The original paper can be found  [here](https://www.researchgate.net/profile/Juan-Sierra-Bravo).
+The original paper can be found  [here](https://arxiv.org/abs/2210.07102).
 
 ## Abstract
 Specular microscopy assessment of the human corneal endothelium (CE) in Fuchs' dystrophy is challenging due to the presence of dark image regions called guttae. This paper proposes a UNet-based segmentation approach that requires minimal post-processing and achieves reliable CE morphometric assessment and guttae identification across all degrees of Fuchs' dystrophy. We cast the segmentation problem as a regression task of the cell and gutta signed distance maps instead of a pixel-level classification task as typically done with UNets. Compared to the conventional UNet classification approach, the distance-map regression approach converges faster in clinically relevant parameters. It also produces morphometric parameters that agree with the manually-segmented ground-truth data, namely the average cell density difference of -41.9 cells/mm<sup>2</sup> (95% confidence interval (CI) [-306.2, 222.5]) and the average difference of mean cell area of 14.8 μm<sup>2</sup> (95% CI [-41.9, 71.5]). These results suggest a promising alternative for CE assessment. 
@@ -41,7 +41,7 @@ signed-distance-maps-for-corneal-endothelium/
 
 ### Try the trained model
 
-In the directory `./datasets/validation/` of the main folder, there is an image of cornea guttata and its curated segmentation. To run the trained model, check the `./seg_data.ipynb` notebook.
+In the directory `./datasets/validation/` of the main folder, there is an image of cornea guttata and its curated segmentation. To run the trained model, check the `./seg_data.ipynb` notebook. It is worth mentioning that the dimensions of the images have to be a multiple of 32.
 
 ### Train the model
 
@@ -106,6 +106,13 @@ By using this method, we found several advantages:
 If you find this code useful, please consider citing:
 
 ```
-bibtext
+@misc{sierra2022corneal,
+      title={Corneal endothelium assessment in specular microscopy images with Fuchs' dystrophy via deep regression of signed distance maps}, 
+      author={Juan S. Sierra and Jesus Pineda and Daniela Rueda and Alejandro Tello and Angelica M. Prada and Virgilio Galvis and Giovanni Volpe and Maria S. Millan and Lenny A. Romero and Andres G. Marrugo},
+      year={2022},
+      eprint={2210.07102},
+      archivePrefix={arXiv},
+      primaryClass={eess.IV}
+}
 ```
 
