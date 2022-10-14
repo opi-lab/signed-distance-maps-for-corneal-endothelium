@@ -15,10 +15,7 @@ opts, args = getopt.getopt(sys.argv[2:], "i:e:p:n:r:")
 
 script = sys.argv[1]
 # Defaults
-args = {
-    "epochs": 100000,
-    "patience": 100,
-}
+args = {"epochs": 100000, "patience": 100, "repet": 1}
 
 username = guttae.get_user_name()
 
@@ -58,8 +55,6 @@ for index in indices:
 
     headers = {**m_header_dict, **d_header_dict, **args}
 
-    model.compile(loss="mae", metrics="mae")
-
     print("")
 
     print("=" * 50, "START", "=" * 50)
@@ -82,28 +77,23 @@ for index in indices:
     validation_data = guttae.get_validation_set(2)
 
     for i in range(args["repet"]):
+        validation_data = guttae.get_validation_set(2)
         with generator:
+
             h = model.fit(
                 generator,
                 epochs=args["epochs"],
                 callbacks=[early_stopping],
-                validation_data=(
-                    np.expand_dims(validation_data[0][0], axis=0),
-                    np.expand_dims(validation_data[1][0], axis=0),
-                ),
-                validation_batch_size=1,
+                validation_data=validation_data,
+                validation_batch_size=2,
             )
-
-        predictions = [
-            model.predict(np.expand_dims(file, axis=0), batch_size=1)
-            for file in validation_data[0][:2]
-        ]
+        predictions = model.model.predict(validation_data[0][:2], batch_size=2)
 
         guttae.save_training_results(
             index=index,
             name=username,
             history=h.history,
-            model=model.generator,
+            model=model.model,
             headers=headers,
             inputs=validation_data[0],
             predictions=predictions,
