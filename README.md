@@ -39,10 +39,6 @@ signed-distance-maps-for-corneal-endothelium/
     └── train.py
 ```
 
-### Try the trained model
-
-In the directory `./datasets/validation/` of the main folder, there is an image of cornea guttata and its curated segmentation. To run the trained model, check the `./seg_data.ipynb` notebook. It is worth mentioning that the dimensions of the images have to be a multiple of 32.
-
 ### Train the model
 
 To train the model from console, you must use the command:
@@ -66,6 +62,11 @@ To train the model from console, you must use the command:
 `python train.py setup -i 0 -e 10 -r 10 -n test`
 
 This command will execute the training of the first architecture 10 times with 10 epochs, after which the model will be saved with the name <em>test</em>. So, when the training has finished, 10 trained models will be saved in the directory `./datasets/models/test/`.
+
+### Try the trained model
+
+In the directory `./datasets/validation/` of the main folder, there is an image of cornea guttata and its curated segmentation. To run the trained model, check the `./seg_data.ipynb` notebook. It is worth mentioning that the dimensions of the images have to be a multiple of 32.
+
 
 ## Problem statement and motivation
 
