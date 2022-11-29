@@ -1,5 +1,8 @@
 # Corneal endothelium assessment in specular microscopy images with Fuchs' dystrophy via deep regression of signed distance maps
 
+[![DOI](https://zenodo.org/badge/DOI/10.5281/zenodo.7378507.svg)](https://doi.org/10.5281/zenodo.7378507)
+
+
 #### by Juan S. Sierra et al. (https://www.researchgate.net/profile/Juan-Sierra-Bravo) 
 
 The original paper can be found  [here](https://arxiv.org/abs/2210.07102).
