@@ -110,13 +110,15 @@ By using this method, we found several advantages:
 If you find this code useful, please consider citing:
 
 ```
-@misc{sierra2022corneal,
+@article{sierra2022corneal,
       title={Corneal endothelium assessment in specular microscopy images with Fuchs' dystrophy via deep regression of signed distance maps}, 
       author={Juan S. Sierra and Jesus Pineda and Daniela Rueda and Alejandro Tello and Angelica M. Prada and Virgilio Galvis and Giovanni Volpe and Maria S. Millan and Lenny A. Romero and Andres G. Marrugo},
-      year={2022},
-      eprint={2210.07102},
-      archivePrefix={arXiv},
-      primaryClass={eess.IV}
+      journal={Biomedical Optics Express},
+      volume={14},
+      number={1},
+      pages={accepted},
+      year={2023},
+      publisher={OPTICA}
 }
 ```
 
