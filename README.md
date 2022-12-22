@@ -110,15 +110,15 @@ By using this method, we found several advantages:
 If you find this code useful, please consider citing:
 
 ```
-@article{sierra2022corneal,
-      title={Corneal endothelium assessment in specular microscopy images with Fuchs' dystrophy via deep regression of signed distance maps}, 
-      author={Juan S. Sierra and Jesus Pineda and Daniela Rueda and Alejandro Tello and Angelica M. Prada and Virgilio Galvis and Giovanni Volpe and Maria S. Millan and Lenny A. Romero and Andres G. Marrugo},
-      journal={Biomedical Optics Express},
-      volume={14},
-      number={1},
-      pages={accepted},
-      year={2023},
-      publisher={OPTICA}
+@article{sierra2023corneal,
+  title={Corneal endothelium assessment in specular microscopy images with Fuchs’ dystrophy via deep regression of signed distance maps},
+  author={Sierra, Juan S and Pineda, Jesus and Rueda, Daniela and Tello, Alejandro and Prada, Ang{\'e}lica M and Galvis, Virgilio and Volpe, Giovanni and Millan, Maria S and Romero, Lenny A and Marrugo, Andres G},
+  journal={Biomedical Optics Express},
+  volume={14},
+  number={1},
+  pages={335--351},
+  year={2023},
+  publisher={Optica Publishing Group}
 }
 ```
 
